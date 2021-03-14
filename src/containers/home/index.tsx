@@ -1,7 +1,6 @@
-import { Box, Container, Flex } from "@chakra-ui/layout";
-import { faInstagram } from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Box } from "@chakra-ui/layout";
 import { Helmet } from "react-helmet";
+import Header from "../../components/header";
 import { TITLE } from "../../helpers/environments";
 
 const Home = () => (
@@ -10,11 +9,7 @@ const Home = () => (
             <title>{TITLE}</title>
         </Helmet>
 
-        <Container maxW="1200px">
-            <Flex alignItems="center" color="white">
-                hello <Box ml="6px" /> <FontAwesomeIcon icon={faInstagram} />
-            </Flex>
-        </Container>
+        <Header />
     </Box>
 );
 
