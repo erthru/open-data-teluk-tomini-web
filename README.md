@@ -1,8 +1,8 @@
-<h2>Open Data Teluk Tomini API</h2>
+<h2>Open Data Teluk Tomini WEB</h2>
 <h4>Requirements:</h4>
 
 <ul>
-    <li>Running Open Data API</li>
+    <li>Running Open Data WEB</li>
 </ul>
 
 <h4>How To Use:</h4>
