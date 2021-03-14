@@ -37,7 +37,7 @@ const Header = () => {
                         <FontAwesomeIcon icon={isMobileNavOpen ? faChevronUp : faChevronDown} />
                     </Box>
 
-                    <Flex display={{ base: "none", md: "flex" }} ml="auto" color="white" fontWeight="semibold" fontSize="15px">
+                    <Flex display={{ base: "none", md: "flex" }} ml="auto" color="white" fontWeight="bold" fontSize="15px">
                         <Link _hover={{ textDecor: "none" }} _focus={{ outline: "none" }} as={ReactLink} to="/datasets">
                             DATASET
                         </Link>
