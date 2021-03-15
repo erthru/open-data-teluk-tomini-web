@@ -1,6 +1,8 @@
-import { Box, Container } from "@chakra-ui/layout";
+import { Box, Container, Flex } from "@chakra-ui/layout";
 import { Helmet } from "react-helmet";
 import Header from "../../components/header";
+import HorizontalCategories from "../../components/horizontal-categories";
+import SectionTitle from "../../components/section-title";
 import { TITLE } from "../../helpers/environments";
 import "./index.css";
 
@@ -13,7 +15,13 @@ const Home = () => (
         <Header />
 
         <Container maxW="1200px" p="16px">
-            asfas
+            <Box mt="16px" />
+
+            <Flex justifyContent="center" w="full" pb="16px">
+                <SectionTitle title="Telusuri Berdasarkan Kategori" />
+            </Flex>
+
+            <HorizontalCategories />
         </Container>
     </Box>
 );
