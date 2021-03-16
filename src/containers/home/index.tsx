@@ -1,10 +1,10 @@
 import { Box, Flex } from "@chakra-ui/layout";
 import { Helmet } from "react-helmet";
-import HorizontalCategories from "../../components/horizontal-categories";
-import SectionTitle from "../../components/common/section-title";
+import CHorizontalCategories from "../../components/horizontal-categories";
+import CSectionTitle from "../../components/common/section-title";
 import { TITLE } from "../../helpers/environments";
 
-const Home = () => (
+const XHome = () => (
     <Box bg="#f7fafc">
         <Helmet>
             <title>{TITLE}</title>
@@ -13,11 +13,11 @@ const Home = () => (
         <Box mt="16px" />
 
         <Flex justifyContent="center" w="full" pb="16px">
-            <SectionTitle title="Telusuri Berdasarkan Kategori" />
+            <CSectionTitle title="Telusuri Berdasarkan Kategori" />
         </Flex>
 
-        <HorizontalCategories />
+        <CHorizontalCategories />
     </Box>
 );
 
-export default Home;
+export default XHome;

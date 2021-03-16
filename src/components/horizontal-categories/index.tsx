@@ -1,11 +1,10 @@
-import { Image } from "@chakra-ui/image";
 import { Box, Flex } from "@chakra-ui/layout";
 import { CircularProgress } from "@chakra-ui/progress";
 import { useEffect, useState } from "react";
 import * as categoryRepo from "../../data/api/repositories/category-repository";
-import HorizontalCategory from "./horizontal-category";
+import CHorizontalCategory from "./horizontal-category";
 
-const HorizontalCategories = () => {
+const CHorizontalCategories = () => {
     const [categories, setCategories] = useState<categoryRepo.Category[]>([]);
 
     useEffect(() => {
@@ -26,7 +25,7 @@ const HorizontalCategories = () => {
             <Flex w="full" overflowX="auto" className="no-scrollbars">
                 {categories.map((category) => (
                     <Box key={category._id} pr="16px">
-                        <HorizontalCategory category={category} />
+                        <CHorizontalCategory category={category} />
                     </Box>
                 ))}
             </Flex>
@@ -34,4 +33,4 @@ const HorizontalCategories = () => {
     );
 };
 
-export default HorizontalCategories;
+export default CHorizontalCategories;

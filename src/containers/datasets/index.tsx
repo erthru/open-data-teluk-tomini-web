@@ -2,7 +2,7 @@ import { Box } from "@chakra-ui/layout";
 import { Helmet } from "react-helmet";
 import { TITLE } from "../../helpers/environments";
 
-const Datasets = () => (
+const XDatasets = () => (
     <Box>
         <Helmet>
             <title>{`Dataset | ${TITLE}`}</title>
@@ -11,4 +11,4 @@ const Datasets = () => (
     </Box>
 );
 
-export default Datasets;
+export default XDatasets;

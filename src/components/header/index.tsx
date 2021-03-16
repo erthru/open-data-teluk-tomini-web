@@ -1,7 +1,7 @@
 import { Box, Container, Flex, Link, Text } from "@chakra-ui/layout";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import Logo from "../common/logo";
+import CLogo from "../common/logo";
 import { Link as ReactLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
@@ -9,7 +9,7 @@ import { Collapse } from "@chakra-ui/transition";
 import { Image } from "@chakra-ui/image";
 import { Input } from "@chakra-ui/input";
 
-const Header = () => {
+const CHeader = () => {
     const history = useHistory();
     const [isHomeMode, setIsHomeMode] = useState(false);
     const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
@@ -24,7 +24,7 @@ const Header = () => {
                 <Container maxW="1200px" p="16px">
                     <Flex alignItems="center">
                         <Link to="/" as={ReactLink} _hover={{ textDecor: "none" }} _focus={{ outline: "none" }}>
-                            <Logo />
+                            <CLogo />
                         </Link>
 
                         <Box
@@ -151,4 +151,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default CHeader;

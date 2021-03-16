@@ -1,7 +1,7 @@
 import { Image } from "@chakra-ui/image";
 import { Box, Flex, Text } from "@chakra-ui/layout";
 
-const Logo = () => (
+const CLogo = () => (
     <Flex alignItems="center">
         <Image src="images/logo-white.png" w={{ base: "42px", md: "52px" }} h={{ base: "42px", md: "52px" }} />
 
@@ -17,4 +17,4 @@ const Logo = () => (
     </Flex>
 );
 
-export default Logo;
+export default CLogo;

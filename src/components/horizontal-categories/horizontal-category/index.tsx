@@ -7,7 +7,7 @@ type Props = {
     category: Category;
 };
 
-const HorizontalCategory = (props: Props) => (
+const CHorizontalCategory = (props: Props) => (
     <Link to={`/datasets?category=${props.category.name}`} _hover={{ textDecor: "none" }} _focus={{ outline: "none" }} as={ReactLink}>
         <Box color="white" bg="blue.400" p="16px" rounded="lg" w="100px">
             <Flex w="full" justifyContent="center">
@@ -21,4 +21,4 @@ const HorizontalCategory = (props: Props) => (
     </Link>
 );
 
-export default HorizontalCategory;
+export default CHorizontalCategory;
