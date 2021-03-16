@@ -20,7 +20,7 @@ const XHome = () => (
 
         <CHorizontalCategories />
 
-        <Box mt={{ base: "32px", md: "64px" }} />
+        <Box mt={{ base: "32px", md: "44px" }} />
 
         <Flex w="full" flexWrap={{ base: "wrap", md: "nowrap" }}>
             <Box w={{ base: "full", md: "50%" }} pr={{ base: "0", md: "8px" }}>
