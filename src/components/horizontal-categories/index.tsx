@@ -18,9 +18,11 @@ const CHorizontalCategories = () => {
 
     return (
         <Box>
-            <Flex w="full" justifyContent="center">
-                {categories.length === 0 && <CircularProgress isIndeterminate size="32px" color="blue.500" />}
-            </Flex>
+            {categories.length === 0 && (
+                <Flex w="full" justifyContent="center">
+                    <CircularProgress isIndeterminate size="32px" color="blue.500" />
+                </Flex>
+            )}
 
             <Flex w="full" overflowX="auto" className="no-scrollbars">
                 {categories.map((category) => (

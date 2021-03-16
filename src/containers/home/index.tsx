@@ -3,9 +3,10 @@ import { Helmet } from "react-helmet";
 import CHorizontalCategories from "../../components/horizontal-categories";
 import CSectionTitle from "../../components/common/section-title";
 import { TITLE } from "../../helpers/environments";
+import CDatasets from "../../components/datasets";
 
 const XHome = () => (
-    <Box bg="#f7fafc">
+    <Box>
         <Helmet>
             <title>{TITLE}</title>
         </Helmet>
@@ -17,6 +18,27 @@ const XHome = () => (
         </Flex>
 
         <CHorizontalCategories />
+
+        <Box mt={{ base: "32px", md: "64px" }} />
+
+        <Flex w="full" flexWrap={{ base: "wrap", md: "nowrap" }}>
+            <Box w={{ base: "full", md: "50%" }} pr={{ base: "0", md: "8px" }}>
+                <Flex w="full" justifyContent="center">
+                    <CSectionTitle title="Dataset Terbaru" />
+                </Flex>
+
+                <Box mt="16px" />
+                <CDatasets toFetch="limited" />
+            </Box>
+
+            <Box w={{ base: "full", md: "50%" }} pl={{ base: "0", md: "8px" }} mt={{ base: "16px", md: "0" }}>
+                <Flex w="full" justifyContent="center">
+                    <CSectionTitle title="Visualisasi Terbaru" />
+                </Flex>
+
+                <Box mt="16px" />
+            </Box>
+        </Flex>
     </Box>
 );
 

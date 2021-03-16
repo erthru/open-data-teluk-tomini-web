@@ -6,7 +6,7 @@ import XHome from "../containers/home";
 import "./index.css";
 
 export const Layout = () => (
-    <Box>
+    <Box bg="#fafafa">
         <CHeader />
 
         <Container maxW="1200px" p="16px">
