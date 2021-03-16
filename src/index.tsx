@@ -2,7 +2,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route } from "react-router-dom";
-import { Layout } from "./layout";
+import Layout from "./layout";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(

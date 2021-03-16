@@ -5,7 +5,7 @@ import XDatasets from "../containers/datasets";
 import XHome from "../containers/home";
 import "./index.css";
 
-export const Layout = () => (
+const Layout = () => (
     <Box bg="#fafafa">
         <CHeader />
 
@@ -17,3 +17,5 @@ export const Layout = () => (
         </Container>
     </Box>
 );
+
+export default Layout
