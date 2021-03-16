@@ -1,7 +1,7 @@
 import { Box, Container, Flex, Link, Text } from "@chakra-ui/layout";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import Logo from "../logo";
+import Logo from "../common/logo";
 import { Link as ReactLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";

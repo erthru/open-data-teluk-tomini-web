@@ -3,7 +3,7 @@ import { Box, Flex } from "@chakra-ui/layout";
 import { CircularProgress } from "@chakra-ui/progress";
 import { useEffect, useState } from "react";
 import * as categoryRepo from "../../data/api/repositories/category-repository";
-import HorizontalCategory from "../horizontal-category";
+import HorizontalCategory from "./horizontal-category";
 
 const HorizontalCategories = () => {
     const [categories, setCategories] = useState<categoryRepo.Category[]>([]);

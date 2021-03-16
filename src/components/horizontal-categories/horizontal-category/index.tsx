@@ -1,5 +1,5 @@
 import { Box, Flex, Link, Text } from "@chakra-ui/layout";
-import { Category } from "../../data/api/repositories/category-repository";
+import { Category } from "../../../data/api/repositories/category-repository";
 import { Link as ReactLink } from "react-router-dom";
 import { Image } from "@chakra-ui/image";
 
