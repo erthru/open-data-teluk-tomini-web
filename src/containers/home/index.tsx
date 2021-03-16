@@ -4,6 +4,7 @@ import CHorizontalCategories from "../../components/horizontal-categories";
 import CSectionTitle from "../../components/common/section-title";
 import { TITLE } from "../../helpers/environments";
 import CDatasets from "../../components/datasets";
+import CVisualizations from "../../components/visualizations";
 
 const XHome = () => (
     <Box>
@@ -37,6 +38,7 @@ const XHome = () => (
                 </Flex>
 
                 <Box mt="16px" />
+                <CVisualizations toFetch="limited" />
             </Box>
         </Flex>
     </Box>
