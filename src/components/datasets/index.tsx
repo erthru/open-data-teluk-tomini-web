@@ -1,4 +1,4 @@
-import { Flex, Text } from "@chakra-ui/layout";
+import { Box, Flex, Text } from "@chakra-ui/layout";
 import { CircularProgress } from "@chakra-ui/progress";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
@@ -6,6 +6,7 @@ import * as datasetRepo from "../../data/api/repositories/dataset-repository";
 import * as categoryRepo from "../../data/api/repositories/category-repository";
 import CCard from "../common/card";
 import CDataset from "./dataset";
+import CPagination from "../common/pagination";
 
 type Props = {
     toFetch: "limited" | "default";
@@ -16,21 +17,21 @@ const CDatasets = (props: Props) => {
     const [isEmpty, setIsEmpty] = useState(false);
     const query = new URLSearchParams(useLocation().search);
     const [isFetchingDataNext, setIsFetchingDataNext] = useState(false);
-    const [isNextPageAvailable, setIsNextPageAvailable] = useState(false);
-    let page = 1;
+    const [total, setTotal] = useState(0);
+    const [page, setPage] = useState(1);
     const limit = 10;
 
     useEffect(() => {
-        getDatasets(false);
-    }, [props.toFetch, query.get("category")]);
+        getDatasets();
+    }, [props.toFetch, page]);
 
-    const getDatasets = async (isNext: boolean) => {
-        setIsFetchingDataNext(isNext);
-        if (isNext) page++;
-        else {
-            page = 1;
-            setDatasets([]);
-        }
+    useEffect(() => {
+        setPage(1);
+        getDatasets();
+    }, [query.get("category")]);
+
+    const getDatasets = async () => {
+        page === 1 && setDatasets([]);
 
         if (props.toFetch === "limited") {
             const response = await datasetRepo.getAll(1, 5);
@@ -43,7 +44,7 @@ const CDatasets = (props: Props) => {
                 const response = await datasetRepo.getAll(page, limit);
                 setDatasets(response.datasets);
                 setIsEmpty(response.datasets === undefined || response.datasets.length === 0);
-                setIsNextPageAvailable(response.total > datasets.length * page);
+                setTotal(response.total);
             } else {
                 let categoryId = "";
 
@@ -59,7 +60,7 @@ const CDatasets = (props: Props) => {
                 const response1 = await datasetRepo.getAllByCategoryId(categoryId, page, limit);
                 setDatasets(response1.datasets);
                 setIsEmpty(response1.datasets === undefined || response1.datasets.length === 0);
-                setIsNextPageAvailable(response1.total > datasets.length * page);
+                setTotal(response1.total);
             }
         }
     };
@@ -81,6 +82,12 @@ const CDatasets = (props: Props) => {
             {datasets.map((dataset) => (
                 <CDataset dataset={dataset} key={dataset._id} />
             ))}
+
+            {props.toFetch === "default" && Math.ceil(total / limit) > 1 && (
+                <Box mt="16px">
+                    <CPagination totalPage={Math.ceil(total / limit)} currentPage={page} onPageSelected={(page) => setPage(page)} />
+                </Box>
+            )}
         </CCard>
     );
 };
