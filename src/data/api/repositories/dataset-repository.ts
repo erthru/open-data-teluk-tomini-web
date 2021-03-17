@@ -29,3 +29,11 @@ export type Dataset = {
 export const getAll = async (page: number, limit: number): Promise<Merge<BasicResponse, { datasets: Dataset[]; total: number }>> => {
     return await get(`${API_URL}datasets?page=${page}&limit=${limit}`);
 };
+
+export const getAllByCategoryId = async (
+    categoryId: string,
+    page: number,
+    limit: number
+): Promise<Merge<BasicResponse, { datasets: Dataset[]; total: number }>> => {
+    return await get(`${API_URL}datasets/category-id/${categoryId}?page=${page}&limit=${limit}`);
+};
