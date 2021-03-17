@@ -8,15 +8,12 @@ import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { Collapse } from "@chakra-ui/transition";
 import { Image } from "@chakra-ui/image";
 import { Input } from "@chakra-ui/input";
-import { useSelector } from "react-redux";
-import { Store } from "../../data/store";
-import { NavigationKey } from "../../data/store/navigation/types";
+import Navigation from "../navigation";
 
 const CHeader = () => {
     const history = useHistory();
     const [isHomeMode, setIsHomeMode] = useState(false);
     const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
-    const currentActiveKey = useSelector((store: Store) => store.navigation.currentActiveKey);
 
     useEffect(() => {
         setIsHomeMode(history.location.pathname === "/");
@@ -27,7 +24,13 @@ const CHeader = () => {
             <Box bg="blue.500">
                 <Container maxW="1200px" p="16px">
                     <Flex alignItems="center">
-                        <Link to="/" as={ReactLink} _hover={{ textDecor: "none" }} _focus={{ outline: "none" }}>
+                        <Link
+                            to="/"
+                            as={ReactLink}
+                            _hover={{ textDecor: "none" }}
+                            _focus={{ outline: "none" }}
+                            onClick={() => setIsMobileNavOpen(false)}
+                        >
                             <CLogo />
                         </Link>
 
@@ -42,142 +45,13 @@ const CHeader = () => {
                             <FontAwesomeIcon icon={isMobileNavOpen ? faChevronUp : faChevronDown} />
                         </Box>
 
-                        <Flex display={{ base: "none", md: "flex" }} ml="auto" fontWeight="bold" fontSize="15px">
-                            <Link
-                                _hover={{ textDecor: "none" }}
-                                _focus={{ outline: "none" }}
-                                as={ReactLink}
-                                to="/datasets"
-                                color={currentActiveKey === NavigationKey.datasets ? "gray.600" : "white"}
-                                rounded="lg"
-                                py="2px"
-                                px="12px"
-                                bg={currentActiveKey === NavigationKey.datasets ? "white" : ""}
-                            >
-                                DATASET
-                            </Link>
-
-                            <Link
-                                ml="6px"
-                                _hover={{ textDecor: "none" }}
-                                _focus={{ outline: "none" }}
-                                as={ReactLink}
-                                to="/organizations"
-                                color={currentActiveKey === NavigationKey.organizations ? "gray.600" : "white"}
-                                rounded="lg"
-                                py="2px"
-                                px="12px"
-                                bg={currentActiveKey === NavigationKey.organizations ? "white" : ""}
-                            >
-                                ORGANISASI
-                            </Link>
-
-                            <Link
-                                ml="6px"
-                                _hover={{ textDecor: "none" }}
-                                _focus={{ outline: "none" }}
-                                as={ReactLink}
-                                to="/visualizations"
-                                color={currentActiveKey === NavigationKey.visualizations ? "gray.600" : "white"}
-                                rounded="lg"
-                                py="2px"
-                                px="12px"
-                                bg={currentActiveKey === NavigationKey.visualizations ? "white" : ""}
-                            >
-                                VISUALISASI
-                            </Link>
-
-                            <Link
-                                ml="6px"
-                                _hover={{ textDecor: "none" }}
-                                _focus={{ outline: "none" }}
-                                as={ReactLink}
-                                to="/infographics"
-                                color={currentActiveKey === NavigationKey.infographics ? "gray.600" : "white"}
-                                rounded="lg"
-                                py="2px"
-                                px="12px"
-                                bg={currentActiveKey === NavigationKey.infographics ? "white" : ""}
-                            >
-                                INFOGRAFIS
-                            </Link>
+                        <Flex display={{ base: "none", md: "flex" }} ml="auto">
+                            <Navigation mode="desktop" />
                         </Flex>
                     </Flex>
 
                     <Collapse in={isMobileNavOpen} animateOpacity>
-                        <Flex w="full" flexWrap="wrap" fontWeight="bold" mt="16px" fontSize="14px">
-                            <Flex w="full">
-                                <Link
-                                    _hover={{ textDecor: "none" }}
-                                    mx="auto"
-                                    textAlign="center"
-                                    _focus={{ outline: "none" }}
-                                    as={ReactLink}
-                                    to="/datasets"
-                                    color={currentActiveKey === NavigationKey.datasets ? "gray.600" : "white"}
-                                    rounded="lg"
-                                    py="2px"
-                                    px="12px"
-                                    bg={currentActiveKey === NavigationKey.datasets ? "white" : ""}
-                                >
-                                    DATASET
-                                </Link>
-                            </Flex>
-
-                            <Flex w="full" mt="8px">
-                                <Link
-                                    _hover={{ textDecor: "none" }}
-                                    mx="auto"
-                                    textAlign="center"
-                                    _focus={{ outline: "none" }}
-                                    as={ReactLink}
-                                    to="/organizations"
-                                    color={currentActiveKey === NavigationKey.organizations ? "gray.600" : "white"}
-                                    rounded="lg"
-                                    py="2px"
-                                    px="12px"
-                                    bg={currentActiveKey === NavigationKey.organizations ? "white" : ""}
-                                >
-                                    ORGANISASI
-                                </Link>
-                            </Flex>
-
-                            <Flex w="full" mt="8px">
-                                <Link
-                                    _hover={{ textDecor: "none" }}
-                                    mx="auto"
-                                    textAlign="center"
-                                    _focus={{ outline: "none" }}
-                                    as={ReactLink}
-                                    to="/visualizations"
-                                    color={currentActiveKey === NavigationKey.visualizations ? "gray.600" : "white"}
-                                    rounded="lg"
-                                    py="2px"
-                                    px="12px"
-                                    bg={currentActiveKey === NavigationKey.visualizations ? "white" : ""}
-                                >
-                                    VISUALISASI
-                                </Link>
-                            </Flex>
-
-                            <Flex w="full" mt="8px">
-                                <Link
-                                    _hover={{ textDecor: "none" }}
-                                    mx="auto"
-                                    textAlign="center"
-                                    _focus={{ outline: "none" }}
-                                    as={ReactLink}
-                                    to="/infographics"
-                                    color={currentActiveKey === NavigationKey.infographics ? "gray.600" : "white"}
-                                    rounded="lg"
-                                    py="2px"
-                                    px="12px"
-                                    bg={currentActiveKey === NavigationKey.infographics ? "white" : ""}
-                                >
-                                    INFOGRAFIS
-                                </Link>
-                            </Flex>
-                        </Flex>
+                        <Navigation mode="mobile" onMobileNavSelected={() => setIsMobileNavOpen(false)} />
                     </Collapse>
 
                     {isHomeMode && (
