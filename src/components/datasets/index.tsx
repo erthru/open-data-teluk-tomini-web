@@ -22,13 +22,16 @@ const CDatasets = (props: Props) => {
     const limit = 10;
 
     useEffect(() => {
-        getDatasets();
-    }, [props.toFetch, page]);
+        setPage(0);
+
+        setTimeout(() => {
+            setPage(1);
+        }, 50);
+    }, [props.toFetch, query.get("category")]);
 
     useEffect(() => {
-        setPage(1);
-        getDatasets();
-    }, [query.get("category")]);
+        page > 0 && getDatasets();
+    }, [page]);
 
     const getDatasets = async () => {
         page === 1 && setDatasets([]);
