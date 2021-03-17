@@ -1,17 +1,21 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
 import { BrowserRouter, Route } from "react-router-dom";
+import store from "./data/store";
 import Layout from "./layout";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
     <React.StrictMode>
-        <BrowserRouter>
-            <ChakraProvider>
-                <Route component={Layout} />
-            </ChakraProvider>
-        </BrowserRouter>
+        <Provider store={store}>
+            <BrowserRouter>
+                <ChakraProvider>
+                    <Route component={Layout} />
+                </ChakraProvider>
+            </BrowserRouter>
+        </Provider>
     </React.StrictMode>,
     document.getElementById("root")
 );

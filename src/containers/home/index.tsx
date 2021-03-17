@@ -5,43 +5,54 @@ import CSectionTitle from "../../components/common/section-title";
 import { TITLE } from "../../helpers/environments";
 import CDatasets from "../../components/datasets";
 import CVisualizations from "../../components/visualizations";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { setNavigationKey } from "../../data/store/navigation/actions";
 
-const XHome = () => (
-    <Box>
-        <Helmet>
-            <title>{TITLE}</title>
-        </Helmet>
+const XHome = () => {
+    const dispatch = useDispatch();
 
-        <Box mt="16px" />
+    useEffect(() => {
+        dispatch(setNavigationKey(null));
+    }, []);
 
-        <Flex justifyContent="center" w="full" pb="16px">
-            <CSectionTitle title="Telusuri Berdasarkan Kategori" />
-        </Flex>
+    return (
+        <Box>
+            <Helmet>
+                <title>{TITLE}</title>
+            </Helmet>
 
-        <CHorizontalCategories />
+            <Box mt="16px" />
 
-        <Box mt={{ base: "32px", md: "44px" }} />
+            <Flex justifyContent="center" w="full" pb="16px">
+                <CSectionTitle title="Telusuri Berdasarkan Kategori" />
+            </Flex>
 
-        <Flex w="full" flexWrap={{ base: "wrap", md: "nowrap" }}>
-            <Box w={{ base: "full", md: "50%" }} pr={{ base: "0", md: "8px" }}>
-                <Flex w="full" justifyContent="center">
-                    <CSectionTitle title="Dataset Terbaru" />
-                </Flex>
+            <CHorizontalCategories />
 
-                <Box mt="16px" />
-                <CDatasets toFetch="limited" />
-            </Box>
+            <Box mt={{ base: "32px", md: "44px" }} />
 
-            <Box w={{ base: "full", md: "50%" }} pl={{ base: "0", md: "8px" }} mt={{ base: "16px", md: "0" }}>
-                <Flex w="full" justifyContent="center">
-                    <CSectionTitle title="Visualisasi Terbaru" />
-                </Flex>
+            <Flex w="full" flexWrap={{ base: "wrap", md: "nowrap" }}>
+                <Box w={{ base: "full", md: "50%" }} pr={{ base: "0", md: "8px" }}>
+                    <Flex w="full" justifyContent="center">
+                        <CSectionTitle title="Dataset Terbaru" />
+                    </Flex>
 
-                <Box mt="16px" />
-                <CVisualizations toFetch="limited" />
-            </Box>
-        </Flex>
-    </Box>
-);
+                    <Box mt="16px" />
+                    <CDatasets toFetch="limited" />
+                </Box>
+
+                <Box w={{ base: "full", md: "50%" }} pl={{ base: "0", md: "8px" }} mt={{ base: "16px", md: "0" }}>
+                    <Flex w="full" justifyContent="center">
+                        <CSectionTitle title="Visualisasi Terbaru" />
+                    </Flex>
+
+                    <Box mt="16px" />
+                    <CVisualizations toFetch="limited" />
+                </Box>
+            </Flex>
+        </Box>
+    );
+};
 
 export default XHome;

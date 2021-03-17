@@ -8,11 +8,15 @@ import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { Collapse } from "@chakra-ui/transition";
 import { Image } from "@chakra-ui/image";
 import { Input } from "@chakra-ui/input";
+import { useSelector } from "react-redux";
+import { Store } from "../../data/store";
+import { NavigationKey } from "../../data/store/navigation/types";
 
 const CHeader = () => {
     const history = useHistory();
     const [isHomeMode, setIsHomeMode] = useState(false);
     const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+    const currentActiveKey = useSelector((store: Store) => store.navigation.currentActiveKey);
 
     useEffect(() => {
         setIsHomeMode(history.location.pathname === "/");
@@ -38,27 +42,70 @@ const CHeader = () => {
                             <FontAwesomeIcon icon={isMobileNavOpen ? faChevronUp : faChevronDown} />
                         </Box>
 
-                        <Flex display={{ base: "none", md: "flex" }} ml="auto" color="white" fontWeight="bold" fontSize="15px">
-                            <Link _hover={{ textDecor: "none" }} _focus={{ outline: "none" }} as={ReactLink} to="/datasets">
+                        <Flex display={{ base: "none", md: "flex" }} ml="auto" fontWeight="bold" fontSize="15px">
+                            <Link
+                                _hover={{ textDecor: "none" }}
+                                _focus={{ outline: "none" }}
+                                as={ReactLink}
+                                to="/datasets"
+                                color={currentActiveKey === NavigationKey.datasets ? "gray.600" : "white"}
+                                rounded="lg"
+                                py="2px"
+                                px="12px"
+                                bg={currentActiveKey === NavigationKey.datasets ? "white" : ""}
+                            >
                                 DATASET
                             </Link>
 
-                            <Link ml="16px" _hover={{ textDecor: "none" }} _focus={{ outline: "none" }} as={ReactLink} to="/organizations">
+                            <Link
+                                ml="6px"
+                                _hover={{ textDecor: "none" }}
+                                _focus={{ outline: "none" }}
+                                as={ReactLink}
+                                to="/organizations"
+                                color={currentActiveKey === NavigationKey.organizations ? "gray.600" : "white"}
+                                rounded="lg"
+                                py="2px"
+                                px="12px"
+                                bg={currentActiveKey === NavigationKey.organizations ? "white" : ""}
+                            >
                                 ORGANISASI
                             </Link>
 
-                            <Link ml="16px" _hover={{ textDecor: "none" }} _focus={{ outline: "none" }} as={ReactLink} to="/visualizations">
+                            <Link
+                                ml="6px"
+                                _hover={{ textDecor: "none" }}
+                                _focus={{ outline: "none" }}
+                                as={ReactLink}
+                                to="/visualizations"
+                                color={currentActiveKey === NavigationKey.visualizations ? "gray.600" : "white"}
+                                rounded="lg"
+                                py="2px"
+                                px="12px"
+                                bg={currentActiveKey === NavigationKey.visualizations ? "white" : ""}
+                            >
                                 VISUALISASI
                             </Link>
 
-                            <Link ml="16px" _hover={{ textDecor: "none" }} _focus={{ outline: "none" }} as={ReactLink} to="/infographics">
+                            <Link
+                                ml="6px"
+                                _hover={{ textDecor: "none" }}
+                                _focus={{ outline: "none" }}
+                                as={ReactLink}
+                                to="/infographics"
+                                color={currentActiveKey === NavigationKey.infographics ? "gray.600" : "white"}
+                                rounded="lg"
+                                py="2px"
+                                px="12px"
+                                bg={currentActiveKey === NavigationKey.infographics ? "white" : ""}
+                            >
                                 INFOGRAFIS
                             </Link>
                         </Flex>
                     </Flex>
 
                     <Collapse in={isMobileNavOpen} animateOpacity>
-                        <Flex color="white" w="full" flexWrap="wrap" fontWeight="bold" mt="16px" fontSize="14px">
+                        <Flex w="full" flexWrap="wrap" fontWeight="bold" mt="16px" fontSize="14px">
                             <Flex w="full">
                                 <Link
                                     _hover={{ textDecor: "none" }}
@@ -67,6 +114,11 @@ const CHeader = () => {
                                     _focus={{ outline: "none" }}
                                     as={ReactLink}
                                     to="/datasets"
+                                    color={currentActiveKey === NavigationKey.datasets ? "gray.600" : "white"}
+                                    rounded="lg"
+                                    py="2px"
+                                    px="12px"
+                                    bg={currentActiveKey === NavigationKey.datasets ? "white" : ""}
                                 >
                                     DATASET
                                 </Link>
@@ -80,6 +132,11 @@ const CHeader = () => {
                                     _focus={{ outline: "none" }}
                                     as={ReactLink}
                                     to="/organizations"
+                                    color={currentActiveKey === NavigationKey.organizations ? "gray.600" : "white"}
+                                    rounded="lg"
+                                    py="2px"
+                                    px="12px"
+                                    bg={currentActiveKey === NavigationKey.organizations ? "white" : ""}
                                 >
                                     ORGANISASI
                                 </Link>
@@ -93,6 +150,11 @@ const CHeader = () => {
                                     _focus={{ outline: "none" }}
                                     as={ReactLink}
                                     to="/visualizations"
+                                    color={currentActiveKey === NavigationKey.visualizations ? "gray.600" : "white"}
+                                    rounded="lg"
+                                    py="2px"
+                                    px="12px"
+                                    bg={currentActiveKey === NavigationKey.visualizations ? "white" : ""}
                                 >
                                     VISUALISASI
                                 </Link>
@@ -106,6 +168,11 @@ const CHeader = () => {
                                     _focus={{ outline: "none" }}
                                     as={ReactLink}
                                     to="/infographics"
+                                    color={currentActiveKey === NavigationKey.infographics ? "gray.600" : "white"}
+                                    rounded="lg"
+                                    py="2px"
+                                    px="12px"
+                                    bg={currentActiveKey === NavigationKey.infographics ? "white" : ""}
                                 >
                                     INFOGRAFIS
                                 </Link>
