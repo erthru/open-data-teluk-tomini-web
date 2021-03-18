@@ -18,7 +18,7 @@ type Params = {
 };
 
 const XDatasetBySlug = () => {
-    const { slug } = useParams<Params>();
+    const params = useParams<Params>();
     const [dataset, setDataset] = useState<datasetRepo.Dataset>({});
     const dispatch = useDispatch();
     const [key, setKey] = useState(new Date().getTime());
@@ -29,7 +29,7 @@ const XDatasetBySlug = () => {
 
     useEffect(() => {
         setKey(new Date().getTime());
-    }, [slug]);
+    }, [params.slug]);
 
     return (
         <Box>
@@ -51,7 +51,7 @@ const XDatasetBySlug = () => {
                 <Box w={{ base: "100%", md: "75%" }}>
                     <CSectionTitle title="Dataset" />
                     <Box mt="16px" />
-                    <CDatasetDetail toFetch="bySlug" slug={slug} onLoaded={(dataset) => setDataset(dataset)} />
+                    <CDatasetDetail toFetch="bySlug" slug={params.slug} onLoaded={(dataset) => setDataset(dataset)} />
                     <Box mt="32px" />
                     <CSectionTitle title="Dataset Terkait" />
                     <Box mt="16px" />
