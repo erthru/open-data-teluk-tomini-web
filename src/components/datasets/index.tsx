@@ -9,7 +9,8 @@ import CDataset from "./dataset";
 import CPagination from "../common/pagination";
 
 type Props = {
-    toFetch: "limited" | "default";
+    toFetch: "limited" | "default" | "byCategoryId";
+    categoryId?: string;
 };
 
 const CDatasets = (props: Props) => {
@@ -38,6 +39,12 @@ const CDatasets = (props: Props) => {
 
         if (props.toFetch === "limited") {
             const response = await datasetRepo.getAll(1, 5);
+            setDatasets(response.datasets);
+            setIsEmpty(response.datasets === undefined || response.datasets.length === 0);
+        }
+
+        if (props.toFetch === "byCategoryId") {
+            const response = await datasetRepo.getAllByCategoryId(props.categoryId!!, 1, 5);
             setDatasets(response.datasets);
             setIsEmpty(response.datasets === undefined || response.datasets.length === 0);
         }

@@ -40,7 +40,7 @@ const CDataset = (props: Props) => {
                         {props.dataset.title}
                     </Link>
 
-                    <Text color="gray.500" fontSize={{ base: "11px", md: "14px" }} mt={{ base: "0", md: "-2px" }}>
+                    <Text color="gray.500" fontSize={{ base: "12px", md: "14px" }} mt={{ base: "0", md: "-2px" }}>
                         {props.dataset.description}
                     </Text>
                 </Box>

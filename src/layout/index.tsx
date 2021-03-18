@@ -1,6 +1,7 @@
 import { Box, Container } from "@chakra-ui/layout";
 import { Route, Switch } from "react-router";
 import CHeader from "../components/header";
+import XDatasetBySlug from "../containers/dataset-by-slug";
 import XDatasets from "../containers/datasets";
 import XHome from "../containers/home";
 import "./index.css";
@@ -13,9 +14,10 @@ const Layout = () => (
             <Switch>
                 <Route exact path="/" component={XHome} />
                 <Route exact path="/datasets" component={XDatasets} />
+                <Route exact path="/dataset/:slug" component={XDatasetBySlug} />
             </Switch>
         </Container>
     </Box>
 );
 
-export default Layout
+export default Layout;
