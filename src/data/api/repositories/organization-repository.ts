@@ -1,3 +1,7 @@
+import { BasicResponse, get } from "..";
+import { API_URL } from "../../../helpers/environments";
+import { Merge } from "../../../helpers/utility";
+
 export type Organization = {
     _id?: string;
     name?: string;
@@ -7,4 +11,9 @@ export type Organization = {
     authId?: string;
     createdAt?: string;
     updatedAt?: string;
+    datasetsTotal?: number;
+};
+
+export const getAllIncludeDatasetsTotal = async (): Promise<Merge<BasicResponse, { organizations: Organization[]; total: number }>> => {
+    return await get(`${API_URL}organizations/include-datasets-total`);
 };

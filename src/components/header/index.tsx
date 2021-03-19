@@ -82,7 +82,7 @@ const CHeader = () => {
             </Box>
 
             {!isHomeMode && (
-                <Container maxW="1200px" p="16px">
+                <Container maxW="1200px" px="16px" pt="16px">
                     <Box px={{ base: "0", md: "90px", lg: "140px" }}>
                         <Input type="search" color="black" rounded="lg" bg="white" placeholder="Cari dataset, visualisasi, infografis ..." />
                     </Box>
