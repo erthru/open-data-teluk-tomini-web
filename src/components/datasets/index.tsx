@@ -9,8 +9,9 @@ import CDataset from "./dataset";
 import CPagination from "../common/pagination";
 
 type Props = {
-    toFetch: "limited" | "default" | "byCategoryId";
+    toFetch: "limited" | "default" | "byCategoryId" | "byOrganizationId";
     categoryId?: string;
+    organizationId?: string;
 };
 
 const CDatasets = (props: Props) => {
@@ -47,6 +48,13 @@ const CDatasets = (props: Props) => {
             const response = await datasetRepo.getAllByCategoryId(props.categoryId!!, 1, 5);
             setDatasets(response.datasets);
             setIsEmpty(response.datasets === undefined || response.datasets.length === 0);
+        }
+
+        if (props.toFetch === "byOrganizationId") {
+            const response = await datasetRepo.getAllByOrganizationId(props.organizationId!!, page, limit);
+            setDatasets(response.datasets);
+            setIsEmpty(response.datasets === undefined || response.datasets.length === 0);
+            setTotal(response.total);
         }
 
         if (props.toFetch === "default") {
@@ -93,7 +101,7 @@ const CDatasets = (props: Props) => {
                 <CDataset dataset={dataset} key={dataset._id} />
             ))}
 
-            {props.toFetch === "default" && Math.ceil(total / limit) > 1 && (
+            {props.toFetch !== "limited" && props.toFetch !== "byCategoryId" && Math.ceil(total / limit) > 1 && (
                 <Box mt="16px">
                     <CPagination totalPage={Math.ceil(total / limit)} currentPage={page} onPageSelected={(page) => setPage(page)} />
                 </Box>

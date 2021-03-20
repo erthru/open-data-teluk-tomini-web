@@ -41,7 +41,7 @@ const XDatasetBySlug = () => {
                 <Box w="25%" pr="16px" display={{ base: "none", md: "block" }}>
                     <CSectionTitle title="Organisasi" />
                     <Box mt="16px" />
-                    <COrganizationDetail organization={dataset.organization!!} />
+                    <COrganizationDetail toFetch="byProps" organization={dataset.organization!!} />
                     <Box mt="32px" />
                     <CSectionTitle title="Tag" />
                     <Box mt="16px" />
@@ -61,7 +61,7 @@ const XDatasetBySlug = () => {
                 <Box w="100%" display={{ base: "block", md: "none" }} mt="32px">
                     <CSectionTitle title="Organisasi" />
                     <Box mt="16px" />
-                    <COrganizationDetail organization={dataset.organization!!} />
+                    <COrganizationDetail toFetch="byProps" organization={dataset.organization!!} />
                     <Box mt="32px" />
                     <CSectionTitle title="Tag" />
                     <Box mt="16px" />

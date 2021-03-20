@@ -17,3 +17,7 @@ export type Organization = {
 export const getAllIncludeDatasetsTotal = async (): Promise<Merge<BasicResponse, { organizations: Organization[]; total: number }>> => {
     return await get(`${API_URL}organizations/include-datasets-total`);
 };
+
+export const getBySlug = async (slug: string): Promise<Merge<BasicResponse, { organization: Organization }>> => {
+    return await get(`${API_URL}organization/slug/${slug}`);
+};
