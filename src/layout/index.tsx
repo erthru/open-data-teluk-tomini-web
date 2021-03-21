@@ -1,4 +1,4 @@
-import { Box, Container } from "@chakra-ui/layout";
+import { Box, Container, Flex } from "@chakra-ui/layout";
 import { Route, Switch } from "react-router";
 import CFooter from "../components/footer";
 import CHeader from "../components/header";
@@ -12,20 +12,24 @@ import "./index.css";
 
 const Layout = () => (
     <Box bg="#fafafa">
-        <CHeader />
+        <Flex flexDir="column" minH="100vh">
+            <CHeader />
 
-        <Container maxW="1200px" p="16px">
-            <Switch>
-                <Route exact path="/" component={XHome} />
-                <Route exact path="/datasets" component={XDatasets} />
-                <Route exact path="/dataset/:slug" component={XDatasetBySlug} />
-                <Route exact path="/organizations" component={XOrganizations} />
-                <Route exact path="/organization/:slug" component={XOrganizationBySlug} />
-                <Route exact path="/visualizations" component={XVisualizations} />
-            </Switch>
-        </Container>
+            <Flex w="full" flex="1">
+                <Container maxW="1200px" p="16px">
+                    <Switch>
+                        <Route exact path="/" component={XHome} />
+                        <Route exact path="/datasets" component={XDatasets} />
+                        <Route exact path="/dataset/:slug" component={XDatasetBySlug} />
+                        <Route exact path="/organizations" component={XOrganizations} />
+                        <Route exact path="/organization/:slug" component={XOrganizationBySlug} />
+                        <Route exact path="/visualizations" component={XVisualizations} />
+                    </Switch>
+                </Container>
+            </Flex>
 
-        <CFooter />
+            <CFooter />
+        </Flex>
     </Box>
 );
 
