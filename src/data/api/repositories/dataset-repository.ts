@@ -1,4 +1,4 @@
-import { BasicResponse, get } from "..";
+import { BasicResponse, get, put } from "..";
 import { API_URL } from "../../../helpers/environments";
 import { Merge } from "../../../helpers/utility";
 import { Category } from "./category-repository";
@@ -48,4 +48,8 @@ export const getAllByOrganizationId = async (
 
 export const getBySlug = async (slug: string): Promise<Merge<BasicResponse, { dataset: Dataset }>> => {
     return await get(`${API_URL}dataset/slug/${slug}`);
+};
+
+export const incrementDownloaded = async (id: string): Promise<Merge<BasicResponse, { dataset: Dataset }>> => {
+    return await put(`${API_URL}dataset/${id}/increment-downloaded`);
 };

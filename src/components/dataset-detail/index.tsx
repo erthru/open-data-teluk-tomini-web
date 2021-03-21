@@ -29,6 +29,10 @@ const CDatasetDetail = (props: Props) => {
         }
     };
 
+    const onDownloaded = () => {
+        datasetRepo.incrementDownloaded(dataset._id!!);
+    };
+
     return (
         <CCard>
             {Object.keys(dataset).length === 0 ? (
@@ -68,7 +72,7 @@ const CDatasetDetail = (props: Props) => {
 
                             <Box mt="4px" />
 
-                            <Link _hover={{ textDecor: "none" }} href={dataset.attachment} color="green.500">
+                            <Link _hover={{ textDecor: "none" }} href={dataset.attachment} color="green.500" onClick={onDownloaded}>
                                 <FontAwesomeIcon icon={faDownload} size="1x" />{" "}
                                 {dataset.attachment?.substr(dataset.attachment.lastIndexOf(".") + 1).toUpperCase()}
                             </Link>
