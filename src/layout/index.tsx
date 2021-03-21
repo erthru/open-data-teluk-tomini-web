@@ -5,6 +5,7 @@ import CHeader from "../components/header";
 import XDatasetBySlug from "../containers/dataset-by-slug";
 import XDatasets from "../containers/datasets";
 import XHome from "../containers/home";
+import XInfographics from "../containers/infographics";
 import XOrganizationBySlug from "../containers/organization-by-slug";
 import XOrganizations from "../containers/organizations";
 import XVisualizationBySlug from "../containers/visualization-by-slug";
@@ -26,6 +27,7 @@ const Layout = () => (
                         <Route exact path="/organization/:slug" component={XOrganizationBySlug} />
                         <Route exact path="/visualizations" component={XVisualizations} />
                         <Route exact path="/visualization/:slug" component={XVisualizationBySlug} />
+                        <Route exact path="/infographics" component={XInfographics} />
                     </Switch>
                 </Container>
             </Flex>
