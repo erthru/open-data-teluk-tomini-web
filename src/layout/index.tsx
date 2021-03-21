@@ -1,5 +1,6 @@
 import { Box, Container } from "@chakra-ui/layout";
 import { Route, Switch } from "react-router";
+import CFooter from "../components/footer";
 import CHeader from "../components/header";
 import XDatasetBySlug from "../containers/dataset-by-slug";
 import XDatasets from "../containers/datasets";
@@ -23,6 +24,8 @@ const Layout = () => (
                 <Route exact path="/visualizations" component={XVisualizations} />
             </Switch>
         </Container>
+
+        <CFooter />
     </Box>
 );
 
