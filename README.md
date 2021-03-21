@@ -2,7 +2,7 @@
 <h4>Requirements:</h4>
 
 <ul>
-    <li>Running Open Data WEB</li>
+    <li>Running Open Data API</li>
 </ul>
 
 <h4>How To Use:</h4>
