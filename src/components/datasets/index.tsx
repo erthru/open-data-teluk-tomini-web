@@ -1,7 +1,6 @@
 import { Box, Flex, Text } from "@chakra-ui/layout";
 import { CircularProgress } from "@chakra-ui/progress";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router";
 import * as datasetRepo from "../../data/api/repositories/dataset-repository";
 import * as categoryRepo from "../../data/api/repositories/category-repository";
 import CCard from "../common/card";
@@ -9,16 +8,15 @@ import CDataset from "./dataset";
 import CPagination from "../common/pagination";
 
 type Props = {
-    toFetch: "limited" | "default" | "byCategoryId" | "byOrganizationId";
+    toFetch: "limited" | "default" | "byCategoryId" | "byCategoryName" | "byOrganizationId";
     categoryId?: string;
+    categoryName?: string;
     organizationId?: string;
 };
 
 const CDatasets = (props: Props) => {
     const [datasets, setDatasets] = useState<datasetRepo.Dataset[]>([]);
     const [isEmpty, setIsEmpty] = useState(false);
-    const query = new URLSearchParams(useLocation().search);
-    const [isFetchingDataNext, setIsFetchingDataNext] = useState(false);
     const [total, setTotal] = useState(0);
     const [page, setPage] = useState(1);
     const limit = 10;
@@ -29,7 +27,7 @@ const CDatasets = (props: Props) => {
         setTimeout(() => {
             setPage(1);
         }, 50);
-    }, [props.toFetch, query.get("category")]);
+    }, [props.toFetch]);
 
     useEffect(() => {
         page > 0 && getDatasets();
@@ -57,35 +55,35 @@ const CDatasets = (props: Props) => {
             setTotal(response.total);
         }
 
-        if (props.toFetch === "default") {
-            if (query.get("category") === null) {
-                const response = await datasetRepo.getAll(page, limit);
-                setDatasets(response.datasets);
-                setIsEmpty(response.datasets === undefined || response.datasets.length === 0);
-                setTotal(response.total);
-            } else {
-                let categoryId = "";
+        if (props.toFetch === "byCategoryName") {
+            let categoryId = "";
 
-                const response = await categoryRepo.getAll();
+            const response = await categoryRepo.getAll();
 
-                for (let category of response.categories) {
-                    if (category.name === query.get("category")) {
-                        categoryId = category._id!!;
-                        break;
-                    }
+            for (let category of response.categories) {
+                if (category.name === props.categoryName) {
+                    categoryId = category._id!!;
+                    break;
                 }
-
-                const response1 = await datasetRepo.getAllByCategoryId(categoryId, page, limit);
-                setDatasets(response1.datasets);
-                setIsEmpty(response1.datasets === undefined || response1.datasets.length === 0);
-                setTotal(response1.total);
             }
+
+            const response1 = await datasetRepo.getAllByCategoryId(categoryId, page, limit);
+            setDatasets(response1.datasets);
+            setIsEmpty(response1.datasets === undefined || response1.datasets.length === 0);
+            setTotal(response1.total);
+        }
+
+        if (props.toFetch === "default") {
+            const response = await datasetRepo.getAll(page, limit);
+            setDatasets(response.datasets);
+            setIsEmpty(response.datasets === undefined || response.datasets.length === 0);
+            setTotal(response.total);
         }
     };
 
     return (
         <CCard w="full">
-            {datasets.length === 0 && !isEmpty && !isFetchingDataNext && (
+            {datasets.length === 0 && !isEmpty && (
                 <Flex w="full" justifyContent="center">
                     <CircularProgress isIndeterminate size="32px" color="blue.500" />
                 </Flex>
