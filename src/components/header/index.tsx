@@ -10,14 +10,27 @@ import { Image } from "@chakra-ui/image";
 import { Input } from "@chakra-ui/input";
 import Navigation from "../navigation";
 
-const CHeader = () => {
+type Props = {
+    currentSearchKeywords?: string;
+};
+
+const CHeader = (props: Props) => {
     const history = useHistory();
     const [isHomeMode, setIsHomeMode] = useState(false);
     const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+    const [searchKeywords, setSearchKeywords] = useState("");
 
     useEffect(() => {
         setIsHomeMode(history.location.pathname === "/");
     }, [history.location.pathname]);
+
+    useEffect(() => {
+        if (props.currentSearchKeywords !== undefined) setSearchKeywords(props.currentSearchKeywords);
+    }, [props.currentSearchKeywords]);
+
+    const onSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter") history.push(`/search?query=${searchKeywords}`);
+    };
 
     return (
         <Box>
@@ -72,6 +85,9 @@ const CHeader = () => {
                                     rounded="lg"
                                     bg="white"
                                     placeholder="Cari dataset, visualisasi, infografis ..."
+                                    value={searchKeywords}
+                                    onChange={(e) => setSearchKeywords(e.target.value)}
+                                    onKeyDown={onSearch}
                                 />
                             </Box>
 
@@ -84,7 +100,16 @@ const CHeader = () => {
             {!isHomeMode && (
                 <Container maxW="1200px" px="16px" pt="16px">
                     <Box px={{ base: "0", md: "90px", lg: "140px" }}>
-                        <Input type="search" color="black" rounded="lg" bg="white" placeholder="Cari dataset, visualisasi, infografis ..." />
+                        <Input
+                            type="search"
+                            color="black"
+                            rounded="lg"
+                            bg="white"
+                            placeholder="Cari dataset, visualisasi, infografis ..."
+                            value={searchKeywords}
+                            onChange={(e) => setSearchKeywords(e.target.value)}
+                            onKeyDown={onSearch}
+                        />
                     </Box>
                 </Container>
             )}
