@@ -2,13 +2,16 @@ import { Box, Container, Flex, Link, Text } from "@chakra-ui/layout";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CLogo from "../common/logo";
+import { Link as ReactLink } from "react-router-dom";
 
 const CFooter = () => (
     <Box bg="gray.900">
         <Container maxW="1200px" p="16px">
             <Flex w="full" flexWrap={{ base: "wrap", md: "nowrap" }} alignItems="center" justifyContent={{ base: "center", md: "normal" }}>
                 <Flex w={{ base: "full", md: "auto" }} justifyContent={{ base: "center", md: "left" }}>
-                    <CLogo />
+                    <Link to="/" as={ReactLink} _hover={{ textDecor: "none" }} _focus={{ outline: "none" }}>
+                        <CLogo />
+                    </Link>
                 </Flex>
 
                 <Box color="gray.100" textAlign={{ base: "center", md: "right" }} ml={{ base: "none", md: "auto" }} mt={{ base: "16px", md: "0" }}>
