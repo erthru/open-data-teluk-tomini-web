@@ -25,7 +25,7 @@ const XInfographics = () => {
                 <CSectionTitle title="Infografis" />
             </Flex>
 
-            <CInfographics />
+            <CInfographics toFetch="default" />
         </Box>
     );
 };

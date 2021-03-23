@@ -16,3 +16,11 @@ export type Infographic = {
 export const getAll = async (page: number, limit: number): Promise<Merge<BasicResponse, { infographics: Infographic[]; total: number }>> => {
     return await get(`${API_URL}infographics?page=${page}&limit=${limit}`);
 };
+
+export const search = async (
+    keywords: string,
+    page: number,
+    limit: number
+): Promise<Merge<BasicResponse, { infographics: Infographic[]; total: number }>> => {
+    return await get(`${API_URL}infographics/search/query?q=${keywords}&page=${page}&limit=${limit}`);
+};

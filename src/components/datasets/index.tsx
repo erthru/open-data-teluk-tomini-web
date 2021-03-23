@@ -23,30 +23,15 @@ const CDatasets = (props: Props) => {
     const limit = 10;
 
     useEffect(() => {
-        setPage(0);
-
-        setTimeout(() => {
-            setPage(1);
-        }, 50);
-    }, [props.toFetch]);
+        setPage(1);
+        getDatasets();
+    }, [props.toFetch, props.searchKeywords]);
 
     useEffect(() => {
-        page > 0 && getDatasets();
+        getDatasets();
     }, [page]);
 
-    useEffect(() => {
-        if (props.toFetch === "search") {
-            setPage(0);
-
-            setTimeout(() => {
-                setPage(1);
-            }, 50);
-        }
-    }, [props.searchKeywords]);
-
     const getDatasets = async () => {
-        page === 1 && setDatasets([]);
-
         if (props.toFetch === "limited") {
             const response = await datasetRepo.getAll(1, 5);
             setDatasets(response.datasets);

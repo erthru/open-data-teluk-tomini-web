@@ -25,7 +25,7 @@ const XVisualizations = () => {
                 <CSectionTitle title="Daftar Visualisasi" />
             </Flex>
 
-            <CGridVisualizations />
+            <CGridVisualizations toFetch="default" />
         </Box>
     );
 };

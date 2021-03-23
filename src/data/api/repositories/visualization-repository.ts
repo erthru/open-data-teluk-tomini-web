@@ -22,6 +22,14 @@ export const getAll = async (page: number, limit: number): Promise<Merge<BasicRe
     return await get(`${API_URL}visualizations?page=${page}&limit=${limit}`);
 };
 
+export const search = async (
+    keywords: string,
+    page: number,
+    limit: number
+): Promise<Merge<BasicResponse, { visualizations: Visualization[]; total: number }>> => {
+    return await get(`${API_URL}visualizations/search/query?q=${keywords}&page=${page}&limit=${limit}`);
+};
+
 export const getBySlug = async (slug: string): Promise<Merge<BasicResponse, { visualization: Visualization }>> => {
     return await get(`${API_URL}visualization/slug/${slug}`);
 };

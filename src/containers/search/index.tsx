@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { useLocation } from "react-router";
 import CDatasets from "../../components/datasets";
+import CGridVisualizations from "../../components/grid-visualizations";
+import CInfographics from "../../components/infograpics";
 import { TITLE } from "../../helpers/environments";
 
 const XSearch = () => {
@@ -27,14 +29,21 @@ const XSearch = () => {
                     <Tab>Infografis</Tab>
                 </TabList>
 
-                <TabPanels>
-                    <TabPanel>
-                        <CDatasets toFetch="search" searchKeywords={keywords} />
-                    </TabPanel>
+                {keywords !== "" && (
+                    <TabPanels>
+                        <TabPanel>
+                            <CDatasets toFetch="search" searchKeywords={keywords} />
+                        </TabPanel>
 
-                    <TabPanel>2</TabPanel>
-                    <TabPanel>3</TabPanel>
-                </TabPanels>
+                        <TabPanel>
+                            <CGridVisualizations toFetch="search" searchKeywords={keywords} />
+                        </TabPanel>
+
+                        <TabPanel>
+                            <CInfographics toFetch="search" searchKeywords={keywords} />
+                        </TabPanel>
+                    </TabPanels>
+                )}
             </Tabs>
         </Box>
     );
