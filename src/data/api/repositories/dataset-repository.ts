@@ -46,6 +46,14 @@ export const getAllByOrganizationId = async (
     return await get(`${API_URL}datasets/organization-id/${organizationId}?page=${page}&limit=${limit}`);
 };
 
+export const search = async (
+    keywords: string,
+    page: number,
+    limit: number
+): Promise<Merge<BasicResponse, { datasets: Dataset[]; total: number }>> => {
+    return await get(`${API_URL}datasets/search/query?q=${keywords}&page=${page}&limit=${limit}`);
+};
+
 export const getBySlug = async (slug: string): Promise<Merge<BasicResponse, { dataset: Dataset }>> => {
     return await get(`${API_URL}dataset/slug/${slug}`);
 };

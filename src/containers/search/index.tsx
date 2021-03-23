@@ -3,6 +3,7 @@ import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/tabs";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { useLocation } from "react-router";
+import CDatasets from "../../components/datasets";
 import { TITLE } from "../../helpers/environments";
 
 const XSearch = () => {
@@ -27,7 +28,10 @@ const XSearch = () => {
                 </TabList>
 
                 <TabPanels>
-                    <TabPanel>1</TabPanel>
+                    <TabPanel>
+                        <CDatasets toFetch="search" searchKeywords={keywords} />
+                    </TabPanel>
+
                     <TabPanel>2</TabPanel>
                     <TabPanel>3</TabPanel>
                 </TabPanels>

@@ -8,10 +8,11 @@ import CDataset from "./dataset";
 import CPagination from "../common/pagination";
 
 type Props = {
-    toFetch: "limited" | "default" | "byCategoryId" | "byCategoryName" | "byOrganizationId";
+    toFetch: "limited" | "default" | "byCategoryId" | "byCategoryName" | "byOrganizationId" | "search";
     categoryId?: string;
     categoryName?: string;
     organizationId?: string;
+    searchKeywords?: string;
 };
 
 const CDatasets = (props: Props) => {
@@ -32,6 +33,16 @@ const CDatasets = (props: Props) => {
     useEffect(() => {
         page > 0 && getDatasets();
     }, [page]);
+
+    useEffect(() => {
+        if (props.toFetch === "search") {
+            setPage(0);
+
+            setTimeout(() => {
+                setPage(1);
+            }, 50);
+        }
+    }, [props.searchKeywords]);
 
     const getDatasets = async () => {
         page === 1 && setDatasets([]);
@@ -75,6 +86,13 @@ const CDatasets = (props: Props) => {
 
         if (props.toFetch === "default") {
             const response = await datasetRepo.getAll(page, limit);
+            setDatasets(response.datasets);
+            setIsEmpty(response.datasets === undefined || response.datasets.length === 0);
+            setTotal(response.total);
+        }
+
+        if (props.toFetch === "search") {
+            const response = await datasetRepo.search(props.searchKeywords!!, page, limit);
             setDatasets(response.datasets);
             setIsEmpty(response.datasets === undefined || response.datasets.length === 0);
             setTotal(response.total);
